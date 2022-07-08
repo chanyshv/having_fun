@@ -28,7 +28,7 @@ class RemoveAllView(views.APIView):
     authentication_classes = [SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
-    def delete(self, request: request.Request):
+    def post(self, request: request.Request):
         if request.user.is_staff:
             Image.objects.all().delete()
             return response.Response()

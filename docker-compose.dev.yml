@@ -2,8 +2,6 @@ services:
   db:
     image: postgres:13.3
     hostname: db
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?err}
       POSTGRES_USER: ${POSTGRES_USER:?err}

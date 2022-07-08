@@ -13,5 +13,6 @@ urlpatterns = [
                   path('api/logout', auth_views.LogoutView.as_view()),
                   path('api/register', auth_views.RegisterView.as_view()),
                   path('api/user', auth_views.GetUserView.as_view()),
-                  path('api/remove_all', gallery_views.RemoveAllView.as_view())
+                  path('api/gallery/remove_all', gallery_views.RemoveAllView.as_view())
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
