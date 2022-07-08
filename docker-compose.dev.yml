@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:13.3
+    hostname: db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?err}
+      POSTGRES_USER: ${POSTGRES_USER:?err}
+    volumes:
+      - /db-data/postgres-data:/var/lib/postgresql/data
+  web:
+    build: .
+    command: python dfa_test/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?err}
+      POSTGRES_USER: ${POSTGRES_USER:?err}
+      POSTGRES_HOST: ${POSTGRES_HOST:?err}
+      POSTGRES_PORT: ${POSTGRES_PORT:?err}
+    depends_on:
+      - db
